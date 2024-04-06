@@ -4,6 +4,8 @@ import asyncio
 from surrealdb import Surreal
 from PySide6.QtWidgets import QApplication, QMainWindow, QDialog
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QPalette, QColor
+
 
 
 # Important:
@@ -32,37 +34,53 @@ class MainWindow(QMainWindow):
 
 
 class Dialog(QDialog):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, txt=""):
         super().__init__(parent)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
         # Connect the accepted signal of Dialog Button Box to the slot
         self.ui.buttonBox.accepted.connect(self.open_main_window)
+        self.ui.textBrowser.setPlainText(txt)
+        self.ui.textBrowser.setStyleSheet("color: red; border: none;")
+        self.ui.textBrowser.setAutoFillBackground(False)
+
+        palette = QPalette()
+        palette.setColor(QPalette.Base, QColor(0, 0, 0, 0))  # Fully transparent
+
+        # Apply the palette to the textBrowser
+        self.ui.textBrowser.setPalette(palette)
 
     async def connect_to_surrealdb(self, url):
         """Example of how to use the SurrealDB client."""
         try:
-            async with Surreal(f"ws://{url}/rpc") as db:
-                await db.signin({"user": "root", "pass": "root"})
-            return True
+            async with Surreal(f"ws://{url}/rpc", True) as db:
+                print(db)
+
+                x = await db.signin({"user": "root", "pass": "root"})
+
+                print(x)
+
+            self.main_window = MainWindow()
+            self.main_window.show()
+            self.ui.textBrowser.setPlainText("connected")
         except Exception as e:
             print(f"Failed to connect: {e}")
-            return False
+            self.main_window = Dialog(txt="Failed")
+            self.main_window.open()
+
+            # Assuming "textBrowser" is a widget within the "self.main_window"
+            #self.main_window.textBrowser.setText("failed")
 
     def open_main_window(self):
         # Get the text from textEdit
-        url = self.ui.textEdit.toPlainText()
+        url = self.ui.TextEdit.toPlainText()
         loop = asyncio.get_event_loop()
         asyncio.set_event_loop(loop)
         try:
-            connection_successful = asyncio.run(self.connect_to_surrealdb(url))
-            if connection_successful:
-                self.main_window = MainWindow()
-                self.main_window.show()
-            else:
-                self.ui.textBrowser.setPlainText("Failed to connect")
+            asyncio.run(self.connect_to_surrealdb(url))
         except Exception as e:
+            print(e)
             pass
 
 
