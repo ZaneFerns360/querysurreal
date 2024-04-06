@@ -79,6 +79,8 @@ class Ui_Dialog(object):
         self.lineEdit_2.setSizePolicy(sizePolicy1)
         self.lineEdit_2.setMaximumSize(QSize(16777215, 35))
         self.lineEdit_2.setFont(font1)
+        self.lineEdit_2.setInputMethodHints(Qt.ImhHiddenText|Qt.ImhNoAutoUppercase|Qt.ImhNoPredictiveText|Qt.ImhSensitiveData)
+        self.lineEdit_2.setEchoMode(QLineEdit.Password)
 
         self.verticalLayout.addWidget(self.lineEdit_2)
 
