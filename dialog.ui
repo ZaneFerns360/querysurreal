@@ -214,10 +214,10 @@
   <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
     <rect>
-     <x>750</x>
-     <y>350</y>
-     <width>261</width>
-     <height>61</height>
+     <x>730</x>
+     <y>300</y>
+     <width>271</width>
+     <height>211</height>
     </rect>
    </property>
    <property name="font">
@@ -230,6 +230,19 @@
    </property>
    <property name="autoFillBackground">
     <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="GButton">
+   <property name="geometry">
+    <rect>
+     <x>850</x>
+     <y>200</y>
+     <width>80</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
    </property>
   </widget>
  </widget>

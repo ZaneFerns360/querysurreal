@@ -16,6 +16,9 @@ from ui_form import Ui_MainWindow
 from ui_dialog import Ui_Dialog
 
 
+# Global db instance
+db = None
+
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -53,6 +56,7 @@ class Dialog(QDialog):
 
     async def connect_to_surrealdb(self, url):
         """Example of how to use the SurrealDB client."""
+        global db
         try:
             async with Surreal(f"ws://{url}/rpc", True) as db:
                 print(db)
@@ -66,7 +70,7 @@ class Dialog(QDialog):
             self.ui.textBrowser.setPlainText("connected")
         except Exception as e:
             print(f"Failed to connect: {e}")
-            self.main_window = Dialog(txt="Failed")
+            self.main_window = Dialog(txt=f"Failed {e}")
             self.main_window.open()
 
             # Assuming "textBrowser" is a widget within the "self.main_window"
@@ -75,7 +79,7 @@ class Dialog(QDialog):
     def open_main_window(self):
         # Get the text from textEdit
         url = self.ui.LineEdit.text()
-        loop = asyncio.get_event_loop()
+        loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         try:
             asyncio.run(self.connect_to_surrealdb(url))

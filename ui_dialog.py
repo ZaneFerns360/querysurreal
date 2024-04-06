@@ -16,8 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractButton, QApplication, QDialog, QDialogButtonBox,
-    QGroupBox, QLabel, QLineEdit, QSizePolicy,
-    QTextBrowser, QVBoxLayout, QWidget)
+    QGroupBox, QLabel, QLineEdit, QPushButton,
+    QSizePolicy, QTextBrowser, QVBoxLayout, QWidget)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -117,7 +117,7 @@ class Ui_Dialog(object):
         self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
         self.textBrowser = QTextBrowser(Dialog)
         self.textBrowser.setObjectName(u"textBrowser")
-        self.textBrowser.setGeometry(QRect(750, 350, 261, 61))
+        self.textBrowser.setGeometry(QRect(730, 300, 271, 211))
         font3 = QFont()
         font3.setFamilies([u"RobotoMono Nerd Font Propo Md [GOOG]"])
         font3.setPointSize(17)
@@ -125,6 +125,9 @@ class Ui_Dialog(object):
         font3.setKerning(False)
         self.textBrowser.setFont(font3)
         self.textBrowser.setAutoFillBackground(False)
+        self.GButton = QPushButton(Dialog)
+        self.GButton.setObjectName(u"GButton")
+        self.GButton.setGeometry(QRect(850, 200, 80, 26))
 
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept)
@@ -140,5 +143,6 @@ class Ui_Dialog(object):
         self.label_3.setText(QCoreApplication.translate("Dialog", u"Hostname / Url", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"Username", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Password", None))
+        self.GButton.setText(QCoreApplication.translate("Dialog", u"PushButton", None))
     # retranslateUi
 

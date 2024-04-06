@@ -23,6 +23,11 @@
       <height>571</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>RobotoMono Nerd Font Propo [GOOG]</family>
+     </font>
+    </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
@@ -41,6 +46,7 @@
       </property>
       <property name="font">
        <font>
+        <family>RobotoMono Nerd Font Propo [GOOG]</family>
         <pointsize>17</pointsize>
         <bold>false</bold>
        </font>
@@ -90,6 +96,7 @@
       </property>
       <property name="font">
        <font>
+        <family>RobotoMono Nerd Font Propo [GOOG]</family>
         <pointsize>16</pointsize>
        </font>
       </property>
@@ -118,6 +125,7 @@
       </property>
       <property name="font">
        <font>
+        <family>RobotoMono Nerd Font Propo [GOOG]</family>
         <pointsize>16</pointsize>
        </font>
       </property>
