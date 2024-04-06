@@ -44,7 +44,7 @@ class Dialog(QDialog):
         self.ui.textBrowser.setPlainText(txt)
         self.ui.textBrowser.setStyleSheet("color: red; border: none;")
         self.ui.textBrowser.setAutoFillBackground(False)
-
+        self.setWindowFlags(self.windowFlags() & ~Qt.WindowMinMaxButtonsHint)
         palette = QPalette()
         palette.setColor(QPalette.Base, QColor(0, 0, 0, 0))  # Fully transparent
 
@@ -74,7 +74,7 @@ class Dialog(QDialog):
 
     def open_main_window(self):
         # Get the text from textEdit
-        url = self.ui.TextEdit.toPlainText()
+        url = self.ui.LineEdit.text()
         loop = asyncio.get_event_loop()
         asyncio.set_event_loop(loop)
         try:

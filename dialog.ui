@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1049</width>
+    <width>1000</width>
     <height>524</height>
    </rect>
   </property>
@@ -16,10 +16,19 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>1000</width>
+    <height>524</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="modal">
    <bool>false</bool>
   </property>
   <widget class="QLabel" name="label">
@@ -62,14 +71,14 @@
       <x>220</x>
       <y>40</y>
       <width>258</width>
-      <height>211</height>
+      <height>221</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QPlainTextEdit" name="TextEdit">
+      <widget class="QLineEdit" name="LineEdit">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -89,9 +98,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QPlainTextEdit" name="plainTextEdit_2">
+      <widget class="QLineEdit" name="LineEdit_2">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Ignored">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -111,9 +120,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QPlainTextEdit" name="plainTextEdit_3">
+      <widget class="QLineEdit" name="lineEdit_2">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Ignored">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
