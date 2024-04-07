@@ -50,21 +50,24 @@ class MainWindow(QMainWindow):
             new_label = type(label)()
             new_field = type(field)()
 
-            # Copy the values, styles, and size policies if the widgets are QLineEdit or QComboBox
+            # Copy the values, styles, size policies, minimum sizes, and fonts if the widgets are QLineEdit or QComboBox
             if isinstance(label, QLineEdit):
                 new_label.setText(label.text())
                 new_label.setStyleSheet(label.styleSheet())
                 new_label.setSizePolicy(label.sizePolicy())
                 new_label.setMinimumSize(label.minimumSize())
+                new_label.setFont(label.font())
             if isinstance(field, QComboBox):
                 new_field.addItems([field.itemText(i) for i in range(field.count())])
                 new_field.setCurrentIndex(field.currentIndex())
                 new_field.setStyleSheet(field.styleSheet())
                 new_field.setSizePolicy(field.sizePolicy())
                 new_field.setMinimumSize(field.minimumSize())
+                new_field.setFont(field.font())
 
             # Add the new row to the form layout
             self.ui.formLayout.addRow(new_label, new_field)
+
 
 
 

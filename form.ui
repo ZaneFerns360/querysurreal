@@ -156,6 +156,12 @@
            <height>0</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <family>RobotoMono Nerd Font Propo [GOOG]</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
          <item>
           <property name="text">
            <string>String</string>
