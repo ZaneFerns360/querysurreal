@@ -2,7 +2,7 @@
 import sys
 import asyncio
 from surrealdb import Surreal
-from PySide6.QtWidgets import QApplication, QMainWindow, QDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QFormLayout, QPushButton, QLineEdit, QComboBox
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPalette, QColor
 
@@ -27,6 +27,8 @@ class MainWindow(QMainWindow):
 
         # Connect the pushButton clicked signal to the slot
         self.ui.pushButton.clicked.connect(self.display_text)
+        self.ui.addButton.clicked.connect(self.duplicateRow)
+
 
     def display_text(self):
         # Get the text from plainTextEdit
@@ -34,6 +36,37 @@ class MainWindow(QMainWindow):
 
         # Set the text to textBrowser
         self.ui.textBrowser.setPlainText(input_text)
+
+    def duplicateRow(self):
+        # Get the first row widgets
+        label_item = self.ui.formLayout.itemAt(0, QFormLayout.LabelRole)
+        field_item = self.ui.formLayout.itemAt(0, QFormLayout.FieldRole)
+
+        if label_item is not None and field_item is not None:
+            label = label_item.widget()
+            field = field_item.widget()
+
+            # Clone the widgets
+            new_label = type(label)()
+            new_field = type(field)()
+
+            # Copy the values, styles, and size policies if the widgets are QLineEdit or QComboBox
+            if isinstance(label, QLineEdit):
+                new_label.setText(label.text())
+                new_label.setStyleSheet(label.styleSheet())
+                new_label.setSizePolicy(label.sizePolicy())
+                new_label.setMinimumSize(label.minimumSize())
+            if isinstance(field, QComboBox):
+                new_field.addItems([field.itemText(i) for i in range(field.count())])
+                new_field.setCurrentIndex(field.currentIndex())
+                new_field.setStyleSheet(field.styleSheet())
+                new_field.setSizePolicy(field.sizePolicy())
+                new_field.setMinimumSize(field.minimumSize())
+
+            # Add the new row to the form layout
+            self.ui.formLayout.addRow(new_label, new_field)
+
+
 
 
 class Dialog(QDialog):
