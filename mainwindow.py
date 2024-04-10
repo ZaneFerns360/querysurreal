@@ -2,10 +2,17 @@
 import sys
 import asyncio
 from surrealdb import Surreal
-from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QFormLayout, QPushButton, QLineEdit, QComboBox
+from PySide6.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QDialog,
+    QFormLayout,
+    QPushButton,
+    QLineEdit,
+    QComboBox,
+)
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPalette, QColor
-
 
 
 # Important:
@@ -19,6 +26,7 @@ from ui_dialog import Ui_Dialog
 # Global db instance
 db = None
 
+
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -26,16 +34,16 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
 
         # Connect the pushButton clicked signal to the slot
-        self.ui.pushButton.clicked.connect(self.display_text)
+        # self.ui.pushButton.clicked.connect(self.display_text)
         self.ui.addButton.clicked.connect(self.duplicateRow)
 
-
-    def display_text(self):
+        # def display_text(self):
         # Get the text from plainTextEdit
-        input_text = self.ui.plainTextEdit.toPlainText()
+        # input_text = self.ui.plainTextEdit.toPlainText()
 
         # Set the text to textBrowser
-        self.ui.textBrowser.setPlainText(input_text)
+        # self.ui.textBrowser.setPlainText(input_text)
+        self.ui.submitButton.clicked.connect(self.submitTable)
 
     def duplicateRow(self):
         # Get the first row widgets
@@ -68,8 +76,49 @@ class MainWindow(QMainWindow):
             # Add the new row to the form layout
             self.ui.formLayout.addRow(new_label, new_field)
 
+    async def submit(self):
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        # Initialize an empty dictionary to store the form data
+        form_data = {}
 
+        # Iterate over each row in the form layout
+        for i in range(self.ui.formLayout.rowCount()):
+            # Get the label and field widgets
+            label_item = self.ui.formLayout.itemAt(i, QFormLayout.LabelRole)
+            field_item = self.ui.formLayout.itemAt(i, QFormLayout.FieldRole)
 
+            if label_item is not None and field_item is not None:
+                label = label_item.widget()
+                field = field_item.widget()
+
+                # Get the name and data type values
+                name = label.text()
+                data_type = (
+                    field.currentText()
+                    if isinstance(field, QComboBox)
+                    else field.text()
+                )
+
+                # Add the name and data type to the form data dictionary
+                form_data[name] = data_type
+
+        # Get the table name from the "tableName" QLineEdit
+        table_name = self.ui.tableName.text()
+        async with Surreal("ws://localhost:8000/rpc") as db:
+            await db.signin({"user": "root", "pass": "root"})
+            await db.use("test", "test")
+            await db.signin({"user": "root", "pass": "root"})
+
+            result = await db.create(table_name, form_data)
+            print(result)
+
+            self.ui.output.setText(str(result))
+
+    def submitTable(self):
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        loop.run_until_complete(self.submit())
 
 
 class Dialog(QDialog):
@@ -96,10 +145,12 @@ class Dialog(QDialog):
         try:
             async with Surreal(f"ws://{url}/rpc", True) as db:
                 print(db)
+                #await db.connect()
 
                 x = await db.signin({"user": "root", "pass": "root"})
+                await db.use("test1", "test1")
 
-                print(x)
+                print(db)
 
             self.main_window = MainWindow()
             self.main_window.show()
@@ -110,7 +161,7 @@ class Dialog(QDialog):
             self.main_window.open()
 
             # Assuming "textBrowser" is a widget within the "self.main_window"
-            #self.main_window.textBrowser.setText("failed")
+            # self.main_window.textBrowser.setText("failed")
 
     def open_main_window(self):
         # Get the text from textEdit
@@ -118,7 +169,7 @@ class Dialog(QDialog):
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         try:
-            asyncio.run(self.connect_to_surrealdb(url))
+            loop.run_until_complete(self.connect_to_surrealdb(url))
         except Exception as e:
             print(e)
             pass
