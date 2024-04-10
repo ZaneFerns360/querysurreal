@@ -19,7 +19,7 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
 from PySide6.QtWidgets import (QApplication, QComboBox, QFormLayout, QLabel,
     QLineEdit, QMainWindow, QMenu, QMenuBar,
     QPushButton, QSizePolicy, QStatusBar, QTabWidget,
-    QTextBrowser, QWidget)
+    QTextBrowser, QTextEdit, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -94,7 +94,7 @@ class Ui_MainWindow(object):
         self.comboBox.setMinimumSize(QSize(100, 0))
         font3 = QFont()
         font3.setFamilies([u"RobotoMono Nerd Font Propo [GOOG]"])
-        font3.setPointSize(12)
+        font3.setPointSize(11)
         self.comboBox.setFont(font3)
 
         self.formLayout.setWidget(0, QFormLayout.FieldRole, self.comboBox)
@@ -109,6 +109,21 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QWidget()
         self.tab_2.setObjectName(u"tab_2")
+        self.pushButton_2 = QPushButton(self.tab_2)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.pushButton_2.setGeometry(QRect(50, 50, 141, 26))
+        self.textEdit = QTextEdit(self.tab_2)
+        self.textEdit.setObjectName(u"textEdit")
+        self.textEdit.setGeometry(QRect(50, 90, 301, 211))
+        self.pushButton_3 = QPushButton(self.tab_2)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.pushButton_3.setGeometry(QRect(350, 370, 161, 26))
+        self.pushButton_4 = QPushButton(self.tab_2)
+        self.pushButton_4.setObjectName(u"pushButton_4")
+        self.pushButton_4.setGeometry(QRect(50, 350, 141, 26))
+        self.pushButton_5 = QPushButton(self.tab_2)
+        self.pushButton_5.setObjectName(u"pushButton_5")
+        self.pushButton_5.setGeometry(QRect(350, 340, 161, 26))
         self.tabWidget.addTab(self.tab_2, "")
         self.tab_3 = QWidget()
         self.tab_3.setObjectName(u"tab_3")
@@ -145,6 +160,10 @@ class Ui_MainWindow(object):
 
         self.addButton.setText(QCoreApplication.translate("MainWindow", u"ADD ATTRIBUTE", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Tab 1", None))
+        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"BEGIN TRANSACTION", None))
+        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"CANCEL TRANSACTION", None))
+        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"ADD TRANSACTION", None))
+        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"COMMIT TRANSACTION", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Tab 2", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"Page", None))
         self.menuQUERY_TOOL.setTitle(QCoreApplication.translate("MainWindow", u"&QUERY TOOL", None))
