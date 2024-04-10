@@ -44,11 +44,11 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
-      <string>Page</string>
+      <string>CREATE TABLE</string>
      </attribute>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
@@ -233,7 +233,7 @@
       <property name="font">
        <font>
         <family>RobotoMono Nerd Font Propo [GOOG]</family>
-        <pointsize>24</pointsize>
+        <pointsize>15</pointsize>
        </font>
       </property>
      </widget>
@@ -245,6 +245,15 @@
         <width>256</width>
         <height>192</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>RobotoMono Nerd Font Propo [GOOG]</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: transparent;</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_4">
@@ -270,69 +279,88 @@
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
-      <string>Tab 2</string>
+      <string>TRANSACTION</string>
      </attribute>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>50</y>
-        <width>141</width>
-        <height>26</height>
+        <x>0</x>
+        <y>0</y>
+        <width>1201</width>
+        <height>691</height>
        </rect>
       </property>
-      <property name="text">
-       <string>BEGIN TRANSACTION</string>
+      <property name="font">
+       <font>
+        <family>RobotoMono Nerd Font Propo [GOOG]</family>
+        <pointsize>12</pointsize>
+       </font>
       </property>
-     </widget>
-     <widget class="QTextEdit" name="textEdit">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>90</y>
-        <width>301</width>
-        <height>211</height>
-       </rect>
+      <property name="title">
+       <string/>
       </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_3">
-      <property name="geometry">
-       <rect>
-        <x>350</x>
-        <y>370</y>
-        <width>161</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>CANCEL TRANSACTION</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_4">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>350</y>
-        <width>141</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>ADD TRANSACTION</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_5">
-      <property name="geometry">
-       <rect>
-        <x>350</x>
-        <y>340</y>
-        <width>161</width>
-        <height>26</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>COMMIT TRANSACTION</string>
-      </property>
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>460</y>
+         <width>191</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>CANCEL TRANSACTION</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_5">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>500</y>
+         <width>191</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>COMMIT TRANSACTION</string>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="textEdit">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>120</y>
+         <width>551</width>
+         <height>321</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>70</y>
+         <width>181</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>BEGIN TRANSACTION</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>460</y>
+         <width>161</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>ADD TRANSACTION</string>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>
